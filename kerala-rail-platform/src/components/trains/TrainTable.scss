@@ -1,0 +1,88 @@
+@use '../../styles/variables' as *;
+
+.table-container {
+  overflow-x: auto;
+  padding: 0;
+
+  .krip-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+    
+    th, td {
+      padding: $spacing-md $spacing-lg;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 2px solid var(--border-color);
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: var(--text-primary);
+      }
+
+      svg {
+        vertical-align: middle;
+        margin-left: 4px;
+        opacity: 0.5;
+      }
+    }
+
+    .dark-theme th {
+      background: rgba(255, 255, 255, 0.05);
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: var(--bg-primary);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .font-mono { font-family: monospace; font-size: 1.1rem; }
+    .font-bold { font-weight: 600; color: var(--text-primary); }
+    
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      &.ontime { background: rgba(16, 185, 129, 0.1); color: var(--status-ontime); }
+      &.delayed { background: rgba(245, 158, 11, 0.1); color: var(--status-minor); }
+    }
+
+    .maint-pill {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+
+      &.maint-healthy { color: var(--status-healthy); border-color: var(--status-healthy); }
+      &.maint-minor-issue { color: var(--status-minor); border-color: var(--status-minor); }
+      &.maint-critical { color: var(--status-critical); border-color: var(--status-critical); }
+    }
+
+    .text-critical { color: var(--status-critical); }
+    .text-ontime { color: var(--status-healthy); }
+  }
+}

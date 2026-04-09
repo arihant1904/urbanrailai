@@ -1,0 +1,79 @@
+@use './variables' as *;
+// _layout.scss
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: $font-family;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-xl;
+}
+
+// Reusable Utilities
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--card-backdrop-filter);
+  -webkit-backdrop-filter: var(--card-backdrop-filter);
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius-lg;
+  box-shadow: var(--shadow-md);
+  padding: $spacing-lg;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.title-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: $spacing-lg;
+  color: var(--text-primary);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

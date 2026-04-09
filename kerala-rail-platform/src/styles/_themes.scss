@@ -1,0 +1,56 @@
+// _themes.scss
+
+:root {
+  /* Light Theme Variables */
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  
+  --accent-primary: #0284c7; // Professional Blue
+  --accent-secondary: #38bdf8;
+  --accent-glow: rgba(2, 132, 199, 0.2);
+  
+  --status-healthy: #10b981; // Green
+  --status-minor: #f59e0b; // Yellow/Orange
+  --status-critical: #ef4444; // Red
+  --status-delayed: #f43f5e;
+  --status-ontime: #10b981;
+
+  --border-color: #e2e8f0;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  --card-backdrop-filter: none;
+}
+
+.dark-theme {
+  --bg-primary: #0b1120; // Deep Navy
+  --bg-secondary: #111827; 
+  --bg-card: rgba(17, 24, 39, 0.7); // Glassmorphism
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  
+  --accent-primary: #38bdf8; // Electric Blue
+  --accent-secondary: #0ea5e9;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+  
+  --status-healthy: #34d399; // Vibrant Green
+  --status-minor: #fbbf24; // Vibrant Orange
+  --status-critical: #f87171; // Soft Red
+  --status-delayed: #fb7185;
+  --status-ontime: #34d399;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  
+  --card-backdrop-filter: blur(12px);
+}

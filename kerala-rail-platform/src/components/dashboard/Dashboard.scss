@@ -1,0 +1,49 @@
+@use '../../styles/variables' as *;
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: $spacing-xl;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  
+  .kpi-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .kpi-content {
+    h3 {
+      font-size: 2rem;
+      margin: 0;
+      color: var(--text-primary);
+    }
+    .kpi-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 4px 0;
+    }
+    .kpi-subtext {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+  }
+}
+
+.chart-container {
+  h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+  }
+}

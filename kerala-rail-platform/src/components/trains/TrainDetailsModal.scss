@@ -1,0 +1,132 @@
+@use '../../styles/variables' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  padding: $spacing-xl;
+  background: var(--bg-secondary);
+
+  .close-btn {
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+
+  .modal-header {
+    margin-bottom: $spacing-xl;
+    
+    h2 {
+      margin: 0 0 $spacing-sm 0;
+      color: var(--text-primary);
+    }
+    .text-secondary {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: $border-radius-xl;
+      font-weight: 600;
+      font-size: 0.85rem;
+
+      &.ontime {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--status-ontime);
+      }
+      &.delayed {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--status-minor);
+      }
+    }
+  }
+
+  .modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+
+    .info-box {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-md;
+      background: var(--bg-primary);
+      border-radius: $border-radius-md;
+      border: 1px solid var(--border-color);
+
+      .icon {
+        color: var(--accent-primary);
+      }
+
+      .info-text {
+        label {
+          display: block;
+          font-size: 0.75rem;
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        p {
+          margin: 4px 0 0 0;
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-md;
+
+    .action-btn {
+      padding: 10px 20px;
+      border-radius: $border-radius-sm;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+
+      &.primary {
+        background: var(--accent-primary);
+        color: white;
+        &:hover {
+          background: var(--accent-secondary);
+        }
+      }
+      &.outline {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        &:hover {
+          background: var(--bg-primary);
+        }
+      }
+    }
+  }
+}
