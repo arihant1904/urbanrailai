@@ -104,3 +104,12 @@ def optimize_route(train_id: str):
         return {"status": "success", "message": "Nexus AI Route Optimized"}
     else:
         return {"status": "error", "message": "Train not found"}
+
+@app.post("/api/reset")
+def reset_network():
+    for t in base_trains:
+        t["isAIFixed"] = False
+        t["congestion"] = random.randint(1, 10)
+        t["previous_delay"] = random.randint(0, 30)
+        t["lastMaintenanceDaysAgo"] = random.randint(1, 200)
+    return {"status": "success", "message": "Network diagnostics reset for demonstration"}

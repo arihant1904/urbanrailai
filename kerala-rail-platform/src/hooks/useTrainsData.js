@@ -43,6 +43,15 @@ export const useTrainsStore = create((set, get) => ({
         )
       }));
     }
+  },
+
+  resetNetwork: async () => {
+    try {
+      await fetch(`${API_BASE_URL}/reset`, { method: 'POST' });
+      get().fetchTrains(); // Re-fetch immediately
+    } catch (err) {
+      console.error(err);
+    }
   }
 }));
 
@@ -64,6 +73,7 @@ export const useTrainsData = () => {
     trains: store.trains, 
     loading: store.loading, 
     error: store.error,
-    fixTrainIssue: store.fixTrainIssue
+    fixTrainIssue: store.fixTrainIssue,
+    resetNetwork: store.resetNetwork
   };
 };

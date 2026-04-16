@@ -4,7 +4,7 @@ import { ArrowUpDown } from 'lucide-react';
 import './TrainTable.scss';
 
 const TrainTable = () => {
-  const { trains, loading, fixTrainIssue } = useTrainsData();
+  const { trains, loading, fixTrainIssue, resetNetwork } = useTrainsData();
   const [data, setData] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
@@ -43,6 +43,14 @@ const TrainTable = () => {
 
   return (
     <div className="glass-card table-container">
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+        <button 
+          onClick={resetNetwork} 
+          style={{ background: 'var(--accent-primary)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+        >
+          🔄 Reset Network Diagnostics
+        </button>
+      </div>
       <table className="krip-table">
         <thead>
           <tr>
