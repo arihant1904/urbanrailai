@@ -121,18 +121,19 @@ def get_trains(db: Session = Depends(get_db)):
             t.speed = max(10, min(120, t.speed + random.randint(-5, 5)))
             t.occupancyPercentage = max(10, min(100, t.occupancyPercentage + random.randint(-2, 2)))
         
-        # Prepare feature vector: speed, mileage, lastMaintenanceDaysAgo, previous_delay, congestion, occupancyPercentage
-        features = [[
-            t.speed,
-            t.mileage,
-            t.lastMaintenanceDaysAgo,
-            t.previous_delay,
-            t.congestion,
-            t.occupancyPercentage
-        ]]
+        # Create a named DataFrame for prediction so Scikit-Learn doesn't complain about feature names
+        import pandas as pd
+        features_df = pd.DataFrame([{
+            "speed": t.speed,
+            "mileage": t.mileage,
+            "lastMaintenanceDaysAgo": t.lastMaintenanceDaysAgo,
+            "previous_delay": t.previous_delay,
+            "congestion": t.congestion,
+            "occupancyPercentage": t.occupancyPercentage
+        }])
         
-        predicted_delay = int(delay_model.predict(features)[0])
-        predicted_health = maint_model.predict(features)[0]
+        predicted_delay = int(delay_model.predict(features_df)[0])
+        predicted_health = maint_model.predict(features_df)[0]
         
         # Convert SQLAlchemy model to dict
         item = {column.name: getattr(t, column.name) for column in t.__table__.columns}
@@ -187,16 +188,17 @@ def reset_network(db: Session = Depends(get_db)):
 def get_ai_insights(train_id: str, db: Session = Depends(get_db)):
     t = db.query(DbTrain).filter(DbTrain.id == train_id).first()
     if t:
-        features = [[
-            t.speed,
-            t.mileage,
-            t.lastMaintenanceDaysAgo,
-            t.previous_delay,
-            t.congestion,
-            t.occupancyPercentage
-        ]]
-        predicted_delay = float(delay_model.predict(features)[0])
-        predicted_health = maint_model.predict(features)[0]
+        import pandas as pd
+        features_df = pd.DataFrame([{
+            "speed": t.speed,
+            "mileage": t.mileage,
+            "lastMaintenanceDaysAgo": t.lastMaintenanceDaysAgo,
+            "previous_delay": t.previous_delay,
+            "congestion": t.congestion,
+            "occupancyPercentage": t.occupancyPercentage
+        }])
+        predicted_delay = float(delay_model.predict(features_df)[0])
+        predicted_health = maint_model.predict(features_df)[0]
         return {
             "predictedDelayMinutes": max(0, predicted_delay * 1.15),
             "predictedMaintenanceStatus": predicted_health
