@@ -23,7 +23,15 @@ maint_model = joblib.load(os.path.join(base_dir, 'maint_model.pkl'))
 
 # Database Configuration
 # Works dynamically with Vercel Postgres when deployed, and SQLite when local.
-POSTGRES_URL = os.environ.get("POSTGRES_URL", "sqlite:///./trains.db")
+POSTGRES_URL = os.environ.get("POSTGRES_URL")
+
+if not POSTGRES_URL:
+    # If on Vercel but no Postgres linked, use /tmp (read-write) instead of ./ (read-only)
+    if os.environ.get("VERCEL"):
+        POSTGRES_URL = "sqlite:////tmp/trains.db"
+    else:
+        POSTGRES_URL = "sqlite:///./trains.db"
+        
 if POSTGRES_URL.startswith("postgres://"):
     POSTGRES_URL = POSTGRES_URL.replace("postgres://", "postgresql://", 1)
 
