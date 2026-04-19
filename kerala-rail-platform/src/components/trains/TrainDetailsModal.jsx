@@ -12,7 +12,7 @@ const TrainDetailsModal = ({ train, onClose }) => {
     const fetchAI = async () => {
       setAiLoading(true);
       try {
-        const res = await fetch(`http://localhost:5000/api/trains/${train.id}/ai-insights`);
+        const res = await fetch(`/api/trains/${train.id}/ai-insights`);
         if (res.ok) {
           const data = await res.json();
           setAiData(data);
