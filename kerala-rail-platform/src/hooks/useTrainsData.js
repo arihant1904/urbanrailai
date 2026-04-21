@@ -64,7 +64,7 @@ export const useTrainsData = () => {
     // Setup AI polling interval
     const interval = setInterval(() => {
       store.fetchTrains();
-    }, 5000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, []);
